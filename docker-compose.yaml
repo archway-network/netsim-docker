@@ -1,0 +1,98 @@
+version: "3"
+
+services:
+  node1:
+    container_name: node1
+    image: archwaynetwork/archwayd:latest
+    networks:
+      - archwaymulti
+    ports:
+      - 9091:9090
+      - 20001:26657
+    environment:
+      P2P_PORT: "20001"
+      CHAIN_ID: ${CHAIN_ID:-my-chain}
+      DENOM: ${DENOM:-uarch}
+      ACCOUNT_FUND: 10000000000
+      VALIDATOR_FUND: 1000000000
+      HOME_DIR: "/root/.archway"
+      MONIKER: "node1"
+      KEY_NAME: "key1"
+      NODE_SEQ: 1
+      TOTAL_NODES: ${TOTAL_NODES:-4}
+      MAIN_NODE_HOME: ${MAIN_NODE_HOME:-/root/main_node_home}
+    volumes:
+      - ./start.sh:/root/start.sh:z
+      - ./node1/home:/root/.archway:z
+      - ./node1/contracts:/contracts:z
+      - ./node1/home:/root/main_node_home:z
+    # entrypoint: ["tail", "-f","/dev/null"]
+    entrypoint: "sh -c 'apk add bash && bash /root/start.sh'"
+
+  #-----------#
+  node2:
+    container_name: node2
+    image: archwaynetwork/archwayd:latest
+    networks:
+      - archwaymulti
+    ports:
+      - 9092:9090
+      - 20002:26657
+    environment:
+      P2P_PORT: "20002"
+      CHAIN_ID: ${CHAIN_ID:-my-chain}
+      DENOM: ${DENOM:-uarch}
+      ACCOUNT_FUND: 10000000000
+      VALIDATOR_FUND: 1000000000
+      HOME_DIR: "/root/.archway"
+      MONIKER: "node2"
+      KEY_NAME: "key2"
+      NODE_SEQ: 2
+      TOTAL_NODES: ${TOTAL_NODES:-4}
+      MAIN_NODE_HOME: ${MAIN_NODE_HOME:-/root/main_node_home}
+    volumes:
+      - ./start.sh:/root/start.sh:z
+      - ./node2/home:/root/.archway:z
+      - ./node2/contracts:/contracts:z
+      - ./node1/home:/root/main_node_home:z
+    # entrypoint: ["tail", "-f","/dev/null"]
+    entrypoint: "sh -c 'apk add bash && bash /root/start.sh'"
+
+  #-----------#
+  node3:
+    container_name: node3
+    image: archwaynetwork/archwayd:latest
+    networks:
+      - archwaymulti
+    ports:
+      - 9093:9090
+      - 20003:26657
+    environment:
+      P2P_PORT: "20003"
+      CHAIN_ID: ${CHAIN_ID:-my-chain}
+      DENOM: ${DENOM:-uarch}
+      ACCOUNT_FUND: 10000000000
+      VALIDATOR_FUND: 1000000000
+      HOME_DIR: "/root/.archway"
+      MONIKER: "node3"
+      KEY_NAME: "key3"
+      NODE_SEQ: 3
+      TOTAL_NODES: ${TOTAL_NODES:-4}
+      MAIN_NODE_HOME: ${MAIN_NODE_HOME:-/root/main_node_home}
+    volumes:
+      - ./start.sh:/root/start.sh:z
+      - ./node3/home:/root/.archway:z
+      - ./node3/contracts:/contracts:z
+      - ./node1/home:/root/main_node_home:z
+    # entrypoint: ["tail", "-f","/dev/null"]
+    entrypoint: "sh -c 'apk add bash && bash /root/start.sh'"
+
+  #-----------#
+
+
+
+#-----------#
+
+networks:
+  archwaymulti:
+    driver: bridge
