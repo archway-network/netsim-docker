@@ -3,7 +3,7 @@ version: "3"
 services:
   node1:
     container_name: node1
-    image: archwaynetwork/archwayd:latest
+    image: archwaynetwork/archwayd:titus
     networks:
       - archwaymulti
     ports:
@@ -13,7 +13,7 @@ services:
       P2P_PORT: "20001"
       CHAIN_ID: ${CHAIN_ID:-my-chain}
       DENOM: ${DENOM:-uarch}
-      ACCOUNT_FUND: 10000000000
+      ACCOUNT_FUND: 10000000000000
       VALIDATOR_FUND: 1000000000
       HOME_DIR: "/root/.archway"
       MONIKER: "node1"
@@ -32,7 +32,7 @@ services:
   #-----------#
   node2:
     container_name: node2
-    image: archwaynetwork/archwayd:latest
+    image: archwaynetwork/archwayd:titus
     networks:
       - archwaymulti
     ports:
@@ -42,7 +42,7 @@ services:
       P2P_PORT: "20002"
       CHAIN_ID: ${CHAIN_ID:-my-chain}
       DENOM: ${DENOM:-uarch}
-      ACCOUNT_FUND: 10000000000
+      ACCOUNT_FUND: 10000000000000
       VALIDATOR_FUND: 1000000000
       HOME_DIR: "/root/.archway"
       MONIKER: "node2"
@@ -61,7 +61,7 @@ services:
   #-----------#
   node3:
     container_name: node3
-    image: archwaynetwork/archwayd:latest
+    image: archwaynetwork/archwayd:titus
     networks:
       - archwaymulti
     ports:
@@ -71,7 +71,7 @@ services:
       P2P_PORT: "20003"
       CHAIN_ID: ${CHAIN_ID:-my-chain}
       DENOM: ${DENOM:-uarch}
-      ACCOUNT_FUND: 10000000000
+      ACCOUNT_FUND: 10000000000000
       VALIDATOR_FUND: 1000000000
       HOME_DIR: "/root/.archway"
       MONIKER: "node3"
