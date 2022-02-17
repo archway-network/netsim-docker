@@ -132,20 +132,6 @@ else
 
 fi
 
-# # Let's wait for the genesis file to be prepared
-# while : ; do
-#     echo "Waiting for the main node to get the genesis done..."
-#     if [ -f "${MAIN_NODE_HOME}/shared/genesis_done" ]; then
-#         break
-#     fi
-#     sleep 0.5
-# done
-# echo "Done"
-
-# # Copy the genesis
-# cp "${MAIN_NODE_HOME}/config/genesis.json" "${HOME_DIR}/config/genesis.json"
-
-
 # Get the peers addresses 
 ALL_PEERS=""
 for i in $( seq 1 ${TOTAL_NODES} ); do
