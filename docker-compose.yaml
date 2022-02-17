@@ -28,6 +28,7 @@ services:
       - ./node1/home:/root/main_node_home:z
     # entrypoint: ["tail", "-f","/dev/null"]
     entrypoint: "sh -c 'apk add bash && bash /root/start.sh'"
+    restart: unless-stopped
 
   #-----------#
   node2:
@@ -57,6 +58,7 @@ services:
       - ./node1/home:/root/main_node_home:z
     # entrypoint: ["tail", "-f","/dev/null"]
     entrypoint: "sh -c 'apk add bash && bash /root/start.sh'"
+    restart: unless-stopped
 
   #-----------#
   node3:
@@ -86,10 +88,9 @@ services:
       - ./node1/home:/root/main_node_home:z
     # entrypoint: ["tail", "-f","/dev/null"]
     entrypoint: "sh -c 'apk add bash && bash /root/start.sh'"
+    restart: unless-stopped
 
   #-----------#
-
-
 
 #-----------#
 
